@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/App.js" defer></script>
+    <link rel="stylesheet" href="./css/Style.css">
+</head>
+<body>
+    <main>
+        <h1>Todo List</h1>
+        <section class="Task flex flex-column flex-align-center" role="manage and add tasks">
+            <section id="tasks">
+                <!-- <div class="task-container flex flex-align-center">
+                    <input type="checkbox">
+                    <p>Task name here</p>
+                </div> -->
+            </section>
+            <section class="new-task" id="newTask">
+                <p>Click to add a new task</p>
+            </section>
+        </section>
+        <section role="light box" class="lightbox-container" id="lightbox">
+            <section class="lightbox">
+                <label for="new-task">Name the new task</label>
+                <input type="text" id="taskInput" placeholder="Task name"/>
+                <div class="cancel-confirm-buttons">
+                    <button id="cancel-button">Cancel</button>
+                    <button id="confirm-button" disabled>Confirm</button>
+                </div>
+            </section>
+            
+        </section>
+    </main>
+</body>
+</html>

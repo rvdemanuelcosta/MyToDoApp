@@ -1,0 +1,128 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+main{
+    width: 100vw;
+    min-height: 100vh;
+    background-color: gray;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+h1{
+    font-size: 2rem;
+    margin-bottom: 16px;
+    margin-top: 16px;
+}
+
+.lightbox-container{
+    background-color: rgba(0, 0, 0, 0.719);
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+.lightbox{
+    background-color: gray;
+    height: 164px;
+    width: 400px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 16px;
+    position: sticky;
+    top: 10vh;
+    left: calc(50% - 400px);
+}
+label{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.cancel-confirm-buttons{
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    align-items: center;
+}
+input[type="text"]{
+    height: 48px;
+    width: 332px;
+    padding: 16px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+}
+button{
+    height: 32px;
+    width: 96px;
+    border-radius: 8px;
+}
+.show{
+    display: flex;
+}
+.new-task{
+    background-color: red;
+    height: 64px;
+    width: 256px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(99, 99, 99);
+    border-radius: 16px;
+    color: gray;
+}
+
+.task-container{
+    background-color: rgb(153, 153, 153);
+    width: 512px;
+    height: 64px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+}
+.task-container input[type="checkbox"]{
+    height: 100%;
+    width: 32px;
+    margin-right: 32px;
+    margin-left: 16px;
+}
+.task-container p{
+    font-weight: bold;
+}
+.task-container .remove{
+    background-color: rgb(134, 74, 74);
+    margin-left: auto;
+    margin-right: 16px;
+    color: white;
+    font-weight: bold;
+}
+.flex{
+    display: flex;
+}
+.flex-column{
+    flex-direction: column;
+}
+.flex-align-center{
+    align-items: center;
+}
+.flex-justify-center{
+    justify-content: center;
+}
+.complete{
+    background-color: #9cd89c;
+}
+.ScrollDisabled{
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
