@@ -3,6 +3,10 @@ const taskName = document.getElementById("taskInput");
 const tasksContainer = document.getElementById("tasks");
 const confirmButton = document.getElementById("confirm-button");
 let tasks = JSON.parse(localStorage.getItem("tasks"));
+let incompleteTasksCounter = 0;
+let completeTasksCounter = 0;
+const completeTasksValueElement = document.getElementById("CompletedTasks");
+const incompleteTasksValueElement = document.getElementById("IncompleteTasks");
 if(tasks != null){
     CreateTaskElements();
     console.log(typeof(tasks));
@@ -46,7 +50,11 @@ function ResetNewTaskInputField(){
 
 function AddNewTask(taskName){
     tasks.push({id: tasks.length + 1, task: taskName, complete: false});
+    let totaltasks = parseInt(localStorage.getItem("TotalTasks"));
+    totaltasks++;
+    localStorage.setItem("TotalTasks", totaltasks);
     SaveTasks();
+    UpdateTasksCountDisplay();
     ClearTasks();
     CreateTaskElements();
     HideLightbox();
@@ -56,8 +64,41 @@ function ClearTasks(){
     tasksContainer.innerHTML = "";
 }
 
+function UpdateTasksCountDisplay(){
+    incompleteTasksCounter = 0;
+    completeTasksCounter = 0;
+    if(!localStorage.getItem("CompleteTasks")){
+        localStorage.setItem("CompleteTasks", 0);
+    }
+    if(!localStorage.getItem("IncompleteTasks")){
+        localStorage.setItem("IncompleteTasks", 0);
+    }
+    Object.values(tasks).forEach((task)=>{
+            if(task.complete == false){
+                incompleteTasksCounter++;
+            }
+            else{
+                completeTasksCounter++;
+            }
+        });
+    localStorage.setItem("CompleteTasks", completeTasksCounter);
+    localStorage.setItem("IncompleteTasks", incompleteTasksCounter);
+    completeTasksValueElement.textContent = localStorage.getItem("CompleteTasks");
+    incompleteTasksValueElement.textContent = localStorage.getItem("IncompleteTasks");
+    
+    if(localStorage.getItem("TotalTasks") != null){
+        document.getElementById("TotalTasks").textContent = localStorage.getItem("TotalTasks");
+    }
+    else{
+        localStorage.setItem("TotalTasks", 0);
+        document.getElementById("TotalTasks").textContent = localStorage.getItem("TotalTasks");
+    }
+    
+}
+
 function SaveTasks(){
     localStorage.setItem("tasks", JSON.stringify(tasks));
+    
     console.log("tasks saved.");
 }
 
@@ -73,11 +114,16 @@ function DeleteTask(id){
         }
         console.log("done");
     }
+    let totaltasks = parseInt(localStorage.getItem("TotalTasks"));
+    totaltasks--;
+    localStorage.setItem("TotalTasks", totaltasks);
+    UpdateTasksCountDisplay();
     newTasks = ResetTasksIds(newTasks);
     tasks = newTasks;
     SaveTasks();
     ClearTasks();
     CreateTaskElements();
+    UpdateTasksCountDisplay();
     console.log(newTasks);
 }
 
@@ -96,6 +142,7 @@ function UpdateTasks(){
     localStorage.setItem("tasks", JSON.stringify(tasks));
     ClearTasks();
     CreateTaskElements();
+    UpdateTasksCountDisplay();
     console.log("tasks updated.");
 }
 
@@ -115,6 +162,21 @@ function CreateTaskElements(){
         taskCheckbox.checked = tasks[i].complete;
         taskCheckbox.id = tasks[i].id + "cb";
         taskCheckbox.addEventListener("change", () =>{
+            /*
+            let complete = localStorage.getItem("CompleteTasks");
+            let incomplete = localStorage.getItem("IncompleteTasks");
+            if(taskCheckbox.checked){
+                incomplete--;
+                complete++;
+                localStorage.setItem("CompleteTasks", complete);
+                localStorage.setItem("IncompleteTasks", incomplete);
+            }
+            else{
+                incomplete++;
+                complete--;
+                localStorage.setItem("CompleteTasks", complete);
+                localStorage.setItem("IncompleteTasks", incomplete);
+            } */
             UpdateTasks();
         })
         let taskElement = document.createElement("p");
@@ -133,3 +195,4 @@ function CreateTaskElements(){
 
     }
 }
+UpdateTasksCountDisplay();

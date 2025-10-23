@@ -126,3 +126,23 @@ button{
     overflow-y: hidden;
     overflow-x: hidden;
 }
+#TaskCountContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 16px 0px;
+}
+#TaskCountContainer *{
+    font-size: 1.5rem;
+}
+.bold{
+    font-weight: bold;
+    
+}
+.CompletedTasks{
+    color: #9cd89c;
+    
+}
+.IncompleteTasks{
+    color: rgb(134, 74, 74);
+}
